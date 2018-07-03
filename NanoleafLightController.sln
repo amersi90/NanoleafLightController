@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoleafLightController", "NanoleafLightController\NanoleafLightController.csproj", "{F09DC32D-9C20-40C7-A46B-0CDCD2825E2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F09DC32D-9C20-40C7-A46B-0CDCD2825E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09DC32D-9C20-40C7-A46B-0CDCD2825E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09DC32D-9C20-40C7-A46B-0CDCD2825E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09DC32D-9C20-40C7-A46B-0CDCD2825E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AE8CEDB-B753-4F83-AF90-6396B3F4421C}
+	EndGlobalSection
+EndGlobal
