@@ -10,7 +10,7 @@ When the application is started it will check for a connection file under My Doc
 
 After the setup-process, users can control their lights
 <p align="left">
- <blockquote class="imgur-embed-pub" lang="en" data-id="wSynrfu"><a href="//imgur.com/wSynrfu">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+ ![Imgur](https://i.imgur.com/wSynrfu.png)
 </p>
 
 ## Built with
