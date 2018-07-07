@@ -10,7 +10,8 @@ When the application is started it will check for a connection file under My Doc
 
 After the setup-process, users can control their lights
 <p align="left">
- ![Imgur](https://i.imgur.com/wSynrfu.png)
+ <img src="https://i.imgur.com/wSynrfu.png" width="350" title="hover text">
+
 </p>
 
 ## Built with
