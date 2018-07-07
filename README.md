@@ -12,6 +12,6 @@ After the setup-process, users can control their lights
 ![Main control](https://ibb.co/b8CMEy)
 
 ## Built with
-[MetroFramework](https://github.com/dennismagno/metroframework-modern-ui)<br/>
-[Tmds.MDns](https://github.com/tmds/Tmds.MDns)<br/>
-[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+MetroFramework (https://github.com/dennismagno/metroframework-modern-ui)<br/>
+Tmds.MDns (https://github.com/tmds/Tmds.MDns)<br/>
+Newtonsoft.Json (https://github.com/JamesNK/Newtonsoft.Json)
