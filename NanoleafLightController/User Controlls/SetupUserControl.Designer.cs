@@ -56,13 +56,13 @@
             this.tableLayoutPanelSetup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelSetup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelSetup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelSetup.Size = new System.Drawing.Size(391, 470);
+            this.tableLayoutPanelSetup.Size = new System.Drawing.Size(391, 455);
             this.tableLayoutPanelSetup.TabIndex = 0;
             // 
             // btnNext
             // 
             this.btnNext.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNext.Location = new System.Drawing.Point(290, 422);
+            this.btnNext.Location = new System.Drawing.Point(290, 407);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(98, 45);
             this.btnNext.TabIndex = 0;
@@ -73,7 +73,7 @@
             // metroLabel1
             // 
             this.metroLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroLabel1.Location = new System.Drawing.Point(105, 419);
+            this.metroLabel1.Location = new System.Drawing.Point(105, 404);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(179, 51);
             this.metroLabel1.TabIndex = 2;
@@ -85,10 +85,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanelSetup);
-            this.MaximumSize = new System.Drawing.Size(391, 470);
-            this.MinimumSize = new System.Drawing.Size(391, 470);
+            this.MaximumSize = new System.Drawing.Size(391, 455);
+            this.MinimumSize = new System.Drawing.Size(391, 455);
             this.Name = "SetupUserControl";
-            this.Size = new System.Drawing.Size(391, 470);
+            this.Size = new System.Drawing.Size(391, 455);
             this.Load += new System.EventHandler(this.SetupUserControl_Load);
             this.tableLayoutPanelSetup.ResumeLayout(false);
             this.ResumeLayout(false);

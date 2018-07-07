@@ -198,7 +198,7 @@ namespace NanoleafLightController.User_Controlls
         private void OnClickContinue(object sender, EventArgs e)
         {
             //TODO close the usercontrol, and open main usercontrol
-            
+            Form1.mainPanelActive = true;
             this.SendToBack();
         }
 

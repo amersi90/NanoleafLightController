@@ -65,9 +65,8 @@
             this.lblResizeForm.FontSize = MetroFramework.MetroLabelSize.Small;
             this.lblResizeForm.Location = new System.Drawing.Point(195, 0);
             this.lblResizeForm.Name = "lblResizeForm";
-            this.lblResizeForm.Size = new System.Drawing.Size(12, 15);
+            this.lblResizeForm.Size = new System.Drawing.Size(0, 0);
             this.lblResizeForm.TabIndex = 0;
-            this.lblResizeForm.Text = "v";
             this.lblResizeForm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.lblResizeForm.Click += new System.EventHandler(this.metroLabel1_Click);
             // 

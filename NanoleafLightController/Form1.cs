@@ -19,7 +19,11 @@ namespace NanoleafLightController
     {
         private string _path;
         public bool toogle;
+        public static bool mainPanelActive;
 
+
+
+       
 
         protected override CreateParams CreateParams
         {
@@ -41,44 +45,48 @@ namespace NanoleafLightController
 
             _path = new FileInfo().GetFilePath();
             this.Size = new Size(431, 160);
+            this.Resizable = false;
+            this.ShadowType = MetroFormShadowType.None;
             if (!File.Exists(_path))
             {
                 
                 this.Size = new Size(431, 550);
                 SetupUserControl setupUserControl = new SetupUserControl();
-                metroMainPanel.Controls.Add(setupUserControl);
                 setupUserControl.BringToFront();
-                
+                metroMainPanel.Controls.Add(setupUserControl);
+
+
             }
             else
             {
-                MainUserControl mainUserControl = new MainUserControl();
-                metroMainPanel.Controls.Add(mainUserControl);
+                metroMainPanel.Controls.Add(new MainUserControl());
+                mainPanelActive = true;
+                lblResizeForm.Text = "v";
 
-                
             }
-            
-
-
-            //this.Controls.Add(mainUserControl);
         }
 
         private void metroLabel1_Click(object sender, EventArgs e)
         {
-            if(!toogle)
+            if(mainPanelActive)
             {
-                lblResizeForm.Text = "^";
-                this.Size = new Size(431, 550);
+                if (!toogle)
+                {
+                    lblResizeForm.Text = "^";
+                    this.Size = new Size(431, 550);
+                    
+                }
+                else
+                {
+                   
+                    lblResizeForm.Text = "v";
+                    this.Size = new Size(431, 160);
 
+                }
+                toogle = !toogle;
             }
-            else
-            {
-                lblResizeForm.Text = "v";
-                this.Size = new Size(431, 160);
-
-
-            }
-            toogle = !toogle;
+            
+            
             
             
         }
