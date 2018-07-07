@@ -9,7 +9,7 @@ Clone the project directly in visual studio, or download the ZIP file and run Na
 When the application is started it will check for a connection file under My Documents/nanoleaf light controller/ folder. If the file doesen't exist, the application will run through a setup-process that looks for nanoleaf lights on the local network to establish connection.
 
 After the setup-process, users can control their lights
-![Main control](https://ibb.co/b8CMEy)
+![Main control](https://i.imgur.com/wSynrfu.png)
 
 ## Built with
 MetroFramework https://github.com/dennismagno/metroframework-modern-ui<br/>
