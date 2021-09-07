@@ -5,6 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using NanoleafLightController.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace NanoleafLightController
 {
@@ -40,9 +44,8 @@ namespace NanoleafLightController
         //Toogles aurora on/off
         public void SetState(bool value)
         {
-            string jsonBody = "{\"on\":{\"value\":" + value.ToString().ToLower() + "" + "}}";
-
-            SendRequest(_connectionString + "/state", "PUT", jsonBody);
+            var nanoLeafModel = new NanoLeafPropertiesModel{On = new NanoLeafValueBooleanModel(value)};
+            SendRequest(_connectionString + "/state", "PUT", nanoLeafModel.ToString());
         }
 
         //Set hue value
@@ -50,8 +53,8 @@ namespace NanoleafLightController
         {
             if (hValue >= 0 && hValue <= 360)
             {
-                string jsonBody = "{\"hue\":{\"value\":" + hValue + "}}";
-                SendRequest(_connectionString + "/state", "PUT", jsonBody);
+                var nanoLeafModel = new NanoLeafPropertiesModel{Hue = new NanoLeafValueIntegerModel(hValue)};
+                SendRequest(_connectionString + "/state", "PUT", nanoLeafModel.ToString());
             }
 
         }
@@ -60,8 +63,8 @@ namespace NanoleafLightController
         {
             if (saturationValue >= 0 && saturationValue <= 100)
             {
-                string jsonBody = "{\"sat\":{\"value\":" + saturationValue + "}}";
-                SendRequest(_connectionString + "/state", "PUT", jsonBody);
+                var nanoLeafModel = new NanoLeafPropertiesModel { Saturation = new NanoLeafValueIntegerModel(saturationValue) };
+                SendRequest(_connectionString + "/state", "PUT", nanoLeafModel.ToString());
             }
         }
         /// <summary>
@@ -72,8 +75,8 @@ namespace NanoleafLightController
         {
             if (brightnessValue >1 && brightnessValue <= 100)
             {
-                string jsonBody = "{\"brightness\":{\"value\":" + brightnessValue + "}}";
-                SendRequest(_connectionString + "/state", "PUT", jsonBody);
+                var nanoLeafModel = new NanoLeafPropertiesModel { Brightness = new NanoLeafValueIntegerModel(brightnessValue) };
+                SendRequest(_connectionString + "/state", "PUT", nanoLeafModel.ToString());
             }
             
         }
@@ -83,8 +86,12 @@ namespace NanoleafLightController
             
                 if ((saturation >= 0 && saturation <= 100) && (hue >= 0 && hue <= 360))
                 {
-                    string jsonData = "{\"hue\":{\"value\":" + hue + "},\"sat\" :{\"value\":" + saturation + "}}";
-                    SendRequest(_connectionString + "/state", "PUT", jsonData);
+                    var nanoLeafModel = new NanoLeafPropertiesModel
+                    {
+                        Hue = new NanoLeafValueIntegerModel(hue),
+                        Saturation = new NanoLeafValueIntegerModel(saturation)
+                    };
+                    SendRequest(_connectionString + "/state", "PUT", nanoLeafModel.ToString());
                 }
             
             
@@ -92,29 +99,24 @@ namespace NanoleafLightController
 
         public void SetColor(Color color)
         {
-            string jsonData = "{\"hue\":{\"value\":" + (int)Math.Round(color.GetHue()) + "},\"sat\" :{\"value\":" + (int)Math.Round(color.GetSaturation() * 100) + "}}";
-            SendRequest(_connectionString + "/state", "PUT", jsonData);
+            var nanoLeafModel = new NanoLeafPropertiesModel
+            {
+                //Should maybe crate a constructor for color?
+                Saturation = new NanoLeafValueIntegerModel((int)Math.Round(color.GetSaturation()*100)),
+                Hue = new NanoLeafValueIntegerModel((int)Math.Round(color.GetHue()))
+
+            };
+            SendRequest(_connectionString + "/state", "PUT", nanoLeafModel.ToString());
         }
 
-        public void SetColorForEachPanel(string data)
-        {
-            string msg =
-                "{\"write\" : {\r\n\"command\" : \"display\",\r\n\"animType\" : \"static\",\r\n\"animData\" : \""+data +
-                "\",\r\n\"loop\" : false\r\n}}";
-
-            SendRequest(_connectionString + "/effects", "PUT", msg);
-            
-        }
         /// <summary>
         /// Select effect to show on aurora
         /// </summary>
         /// <param name="effect"></param>
         public void SetEffect(string effectName)
         {
-            
-            string jsonString = "{\"select\":\"" + effectName + "\"}";
-            SendRequest(_connectionString + "/effects", "PUT", jsonString);
-
+            var nanoLeafModel = new NanoLeafPropertiesModel { Select = new NanoLeafSelectStringModel(effectName) };
+            SendRequest(_connectionString + "/effects", "PUT", nanoLeafModel.ToString());
         }
         /// <summary>
         /// Sets colortemperature based on kelvin
@@ -124,19 +126,14 @@ namespace NanoleafLightController
         {
             if (colorTemperature >= 1200 && colorTemperature <= 6500)
             {
-                string jsonData = "{\"ct\":{\"value\":" + colorTemperature + "}}";
-                SendRequest(_connectionString + "/state", "PUT", jsonData);
+                var nanoLeafModel = new NanoLeafPropertiesModel { ColorTemperature = new NanoLeafValueIntegerModel(colorTemperature) };
+                SendRequest(_connectionString + "/state", "PUT", nanoLeafModel.ToString());
             }
         }
 
-
-        
-
         public string GetToken()
         {
-
-            return Encoding.ASCII.GetString(SendRequest(_connectionString + "new", "POST", ""));
-
+            return SendRequest(_connectionString + "new", "POST", "");
         }
         /// <summary>
         /// Returns information about each panel
@@ -189,27 +186,22 @@ namespace NanoleafLightController
         {
             using (var client = new System.Net.WebClient())
             {
-                byte[] recievedData = client.DownloadData(conString);
-                string convertedData = Encoding.ASCII.GetString(recievedData);
-                return convertedData;
+                return client.DownloadString(conString);
             }
         }
         //Sending post,put,delete
-        private byte[] SendRequest(string conString, string httpMethod, string data)
+        private string SendRequest(string conString, string httpMethod, string data)
         {
-            byte[] response;
             try
             {
                 using (var client = new System.Net.WebClient())
                 {
-                    response = client.UploadData(conString, httpMethod, Encoding.ASCII.GetBytes(data));
-                    return response;
+                    return client.UploadString(conString, httpMethod, data);
                 }
             }
             catch(WebException e)
             {
-
-                return Encoding.ASCII.GetBytes(e.ToString()); 
+                return e.Message;
             }
             
             
@@ -217,18 +209,13 @@ namespace NanoleafLightController
         }
         public bool ConvertToBool(string s)
         {
-            Dictionary<string, string> d = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(s);
-            s = d["value"];
-            if (s == "true")
-                return true;
-            else
-                return false;
+            var jData = (JObject)JsonConvert.DeserializeObject(s);
+            return jData["value"].Value<bool>();
         }
         public int ConvertToInteger(string s)
         {
-            Dictionary<string, string> d = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(s);
-            s = d["value"];
-            return Convert.ToInt32(s);
+            var jData = (JObject)JsonConvert.DeserializeObject(s);
+            return jData["value"].Value<int>();
         }
         
     }

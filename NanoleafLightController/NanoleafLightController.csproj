@@ -90,6 +90,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="JsonDeserializer.cs" />
+    <Compile Include="Models\NanoLeafPropertiesModel.cs" />
     <Compile Include="NanoleafApiWrapper.cs" />
     <Compile Include="NanoleafConnectionInfo.cs" />
     <Compile Include="Program.cs" />
@@ -163,5 +164,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
